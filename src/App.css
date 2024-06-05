@@ -1,0 +1,87 @@
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+a.my-anchor-css-class {
+  color: #e7513b;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#animatedPopUpLogin {
+  animation: animationPopUpLogin 0.4s forwards;
+}
+
+@keyframes animationPopUpLogin {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0vh);
+  }
+}
+
+#closedAnimatedPopUpLogin {
+  animation: closedAnimationPopUpLogin 0.4s forwards;
+}
+
+@keyframes closedAnimationPopUpLogin {
+  100% {
+    transform: translateY(1000px);
+  }
+}
+
+/* Floating Button */
+.hamburger-line {
+  @apply my-2 block h-[2px] w-[30px] bg-black rounded-md;
+}
+
+.hamburger-active > span:nth-child(1) {
+  @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+  @apply -rotate-45;
+}
+
+input[id^="react-select-"] {
+  @apply focus:outline-none focus:border-transparent focus:ring-0;
+}

@@ -1,0 +1,146 @@
+{
+  "minicard": [
+    {
+      "id": 1,
+      "title": "Galang Dana",
+      "desc": "Buat galang dana dengan mudah",
+      "imgurl": "/icon/icon/landing-page/galang-dana.svg"
+    },
+    {
+      "id": 2,
+      "title": "Dotin",
+      "desc": "Donasi rutin tanpa rempong",
+      "imgurl": "/icon/icon/landing-page/dotin.svg"
+    },
+    {
+      "id": 3,
+      "title": "Dorang",
+      "desc": "Donasi barang semakin mudah",
+      "imgurl": "/icon/icon/landing-page/dorang.svg"
+    },
+    {
+      "id": 4,
+      "title": "Zakat",
+      "desc": "Bayar zakat bisa lebih mudah",
+      "imgurl": "/icon/icon/landing-page/dollar-circle.svg"
+    },
+    {
+      "id": 5,
+      "title": "Dorah",
+      "desc": "Bisa donor darah dengan cepat",
+      "imgurl": "/icon/icon/landing-page/drop.svg"
+    },
+    {
+      "id": 6,
+      "title": "Volunteer",
+      "desc": "Jadi bagian kegiatan volunteer",
+      "imgurl": "/icon/icon/landing-page/volunteer.svg"
+    }
+  ],
+  "kategori": [
+    {
+      "id": 1,
+      "title": "Bantuan Hukum"
+    },
+    {
+      "id": 2,
+      "title": "Difabel/Disabilitas"
+    },
+    {
+      "id": 3,
+      "title": "Hak Asasi Manusia"
+    },
+    {
+      "id": 4,
+      "title": "Kesehatan"
+    },
+    {
+      "id": 5,
+      "title": "Kesejahteraan Hewan"
+    },
+    {
+      "id": 6,
+      "title": "Kesetaraan Gender"
+    },
+    {
+      "id": 7,
+      "title": "Ketenagakerjaan"
+    },
+    {
+      "id": 8,
+      "title": "Lingkungan"
+    },
+    {
+      "id": 9,
+      "title": "Olahraga"
+    },
+    {
+      "id": 10,
+      "title": "Penanggulangan Bencana"
+    },
+    {
+      "id": 11,
+      "title": "Pendidikan"
+    },
+    {
+      "id": 12,
+      "title": "Pengembangan Anak Muda"
+    },
+    {
+      "id": 13,
+      "title": "Pengembangan Masyarakat"
+    },
+    {
+      "id": 14,
+      "title": "Perdamaian dan Toleransi"
+    },
+    {
+      "id": 15,
+      "title": "Pertanian"
+    },
+    {
+      "id": 16,
+      "title": "Pusat Informasi dan Kajian"
+    },
+    {
+      "id": 17,
+      "title": "Sain dan Teknologi"
+    },
+    {
+      "id": 18,
+      "title": "Seni dan Budaya"
+    },
+    {
+      "id": 19,
+      "title": "Bantuan Bencana"
+    },
+    {
+      "id": 20,
+      "title": "Bantuan Darurat"
+    },
+    {
+      "id": 21,
+      "title": "Bantuan Makanan"
+    },
+    {
+      "id": 22,
+      "title": "Kesejahteraan Orang Tua"
+    },
+    {
+      "id": 23,
+      "title": "Kesejahteraan Tunawisma"
+    },
+    {
+      "id": 24,
+      "title": "Kesejahteraan Wanita"
+    },
+    {
+      "id": 25,
+      "title": "Komunitas"
+    },
+    {
+      "id": 26,
+      "title": "Liburan dan Rekreasi"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+export const API_URL = 'https://api.peduly.com'
+// export const API_URL = 'https://involuntir.dev'
+// export const API_URL = 'https://dev.mountler.com'    
+// export const API_URL = 'https://api.mountler.com'
+// export const API_URL = 'http://0.tcp.ap.ngrok.io:12766'
