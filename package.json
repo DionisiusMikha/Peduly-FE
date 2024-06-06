@@ -1,5 +1,5 @@
 {
-  "name": "involuntir-web",
+  "name": "peduly-web",
   "version": "2.0.0",
   "description": "website for involuntir",
   "private": true,
@@ -11,7 +11,7 @@
     "eject": "react-scripts eject",
     "sitemap": "babel-node src/sitemap-generator.js"
   },
-  "author": "Dev Involuntir",
+  "author": "Dev Peduly",
   "license": "MIT",
   "eslintConfig": {
     "extends": [

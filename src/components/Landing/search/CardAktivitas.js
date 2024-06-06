@@ -16,7 +16,7 @@ function CardAktivitas({ value }) {
     return 'Tanpa batas'
   }
 
-
+  console.log(value.foto_activity)
   return (
     <div className="mb-6">
       <Link
@@ -24,6 +24,7 @@ function CardAktivitas({ value }) {
           pathname: `/aktivitas/${value.judul_slug}`,
         }}
       >
+    
         {dayToGo(value.batas_waktu) !== 'Berakhir' &&
           (<div className="flex">
             <img

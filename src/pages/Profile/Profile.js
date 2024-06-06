@@ -54,7 +54,7 @@ const Profile = () => {
       </div>
 
 
-
+        {console.log("user photo" + user?.user?.photo)}
         <div>
           {user?.user?.photo ? (
             <img
