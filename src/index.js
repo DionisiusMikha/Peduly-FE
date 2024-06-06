@@ -16,7 +16,7 @@ import './index.css'
 unregister();
 
 const App = lazy(() => import('./App'))
-
+// test
 ReactDOM.render(
   <React.StrictMode>
     {/* // <Provider store={store}> */}
