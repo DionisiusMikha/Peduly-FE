@@ -1,21 +1,17 @@
 import { useState, useEffect, useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import instance from 'axios'
 import { useOnlineStatus } from 'utils/onlineStatus'
 import SkeletonAktivitas from 'components/SkeletonLoading/SkeletonAktivitas'
 import Offline from 'components/Offline'
 import { getToken } from 'utils/cookiesHooks'
-import { setIdTransaksi } from 'utils/cookiesHooks';
 import { UserContext } from 'context/UserContext'
 
 const RiwayatAktivitas = () => {
   const [itemKategori, setItemKategori] = useState([])
   const [loading, setLoading] = useState(true)
-  const [listRiwayat, setListRiwayat] = useState([])
   const isOnline = useOnlineStatus()
   const userData = useContext(UserContext)
-  console.log("userData", userData.user)
-  // const { id } = useParams()
 
   useEffect(() => {
     if (userData) {
@@ -24,52 +20,53 @@ const RiwayatAktivitas = () => {
   }, [userData])
 
   const getData = async () => {
-    const token = getToken(); // Pastikan fungsi getToken sudah didefinisikan dan mengembalikan token
+    const token = getToken()
     if (!token || !userData.user.id) return
-    const data = await instance.get(`api/donation/riwayat/${userData.user.id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    try {
+      const data = await instance.get(`api/donation/riwayat/${userData.user.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
-    const response = await data.data
-    console.log("response", response)
-    // console.log(response);
-    setItemKategori(response)
-    setLoading(false)
+      const response = await data.data
+      console.log("Fetched Data: ", response[0].donasi.judul_activity) 
+      setItemKategori(response)
+      setLoading(false)
+    } catch (error) {
+      console.error("Error fetching data:", error)
+      setLoading(false)
+    }
   }
 
   function dayToGo(TargetDay) {
-    const firstDate = new Date(TargetDay);
-    const secondDate = new Date();
+    const firstDate = new Date(TargetDay)
+    const secondDate = new Date()
 
-    const timeDiff = secondDate - firstDate;
     if (isNaN(firstDate.getTime())) {
-      return 'Tanpa batas';
+      return 'Tanpa batas'
     }
 
-    // if (timeDiff < 0) {
-    //   return 'Berakhir';
-    // }
-    const seconds = Math.floor(timeDiff / (1000));
-    const minutes = Math.floor(timeDiff / (1000 * 60));
-    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const timeDiff = secondDate - firstDate
+    const seconds = Math.floor(timeDiff / 1000)
+    const minutes = Math.floor(timeDiff / (1000 * 60))
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60))
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
 
     if (seconds < 60) {
-      return seconds + ' Detik';
+      return seconds + ' Detik'
     } else if (minutes < 60) {
-      return minutes + ' Menit';
+      return minutes + ' Menit'
     } else if (hours < 24) {
-      return hours + ' Jam';
+      return hours + ' Jam'
     } else {
-      return days + ' Hari';
+      return days + ' Hari'
     }
   }
 
   const splitInDots = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  }
 
   return (
     <div className="mt-[32px] max-w-[430px]">
@@ -88,13 +85,13 @@ const RiwayatAktivitas = () => {
                 <div key={value.id} className="mb-6">
                   <Link
                     to={{
-                      pathname: `/aktivitas/${value.judul_slug}/pembayaran/status/${value.id}`,
+                      pathname: `/aktivitas/${value.donasi.judul_slug}/pembayaran/status/${value.id}`,
                     }}
                     className="flex"
                   >
                     <div className="flex">
                       <img
-                        src={value.foto_activity}
+                        src={value.donasi.foto_activity}
                         alt=""
                         className="mr-5 my-auto"
                         style={{
@@ -111,7 +108,7 @@ const RiwayatAktivitas = () => {
 
                       <div className="block" style={{ maxWidth: '430px' }}>
                         <p className="line-clamp-1 text-left font-semibold text-base text-peduly-dark">
-                          {value.judul_activity}
+                          {value.donasi.judul_activity || 'undefined'}
                         </p>
                         <div className="flex mt-3 flex-col">
                           <div className="flex">
@@ -144,7 +141,7 @@ const RiwayatAktivitas = () => {
                               ></path>
                             </svg>
                             <p className="text-xs text-peduly-dark ml-[7px] leading-6">
-                              {dayToGo(value.created_at)} yang lalu{' '}
+                              {dayToGo(value.donasi.created_at)} yang lalu{' '}
                             </p>
                           </div>
                           <div className="flex justify-start items-center">
@@ -165,21 +162,21 @@ const RiwayatAktivitas = () => {
                               />
                             </svg>
                             <p className="text-xs text-peduly-dark ml-[7px] leading-6">
-                              Rp {splitInDots(value.donasi)}
+                              Rp {value.donasi?.total_donasi !== undefined ? splitInDots(value.donasi.total_donasi) : '0'}
                             </p>
                           </div>
                           <div className="flex justify-start items-center">
-                            {value.status_donasi === 'Approved' && (
+                            {value.donasi.status_donasi === 'Approved' && (
                               <span className="inline-block bg-[#34A85333] text-[#34A853] text-xs mt-2 px-4 py-[2px] bottom-0 rounded-lg">
                                 Berhasil
                               </span>
                             )}
-                            {value.status_donasi === 'Pending' && (
+                            {value.donasi.status_donasi === 'Pending' && (
                               <span className="inline-block bg-[#FCAE0333] text-[#FCAE03] text-xs mt-2 px-4 py-[2px] bottom-0 rounded-lg">
                                 Pending
                               </span>
                             )}
-                            {value.status_donasi === 'Rejected' && (
+                            {value.donasi.status_donasi === 'Rejected' && (
                               <span className="inline-block bg-[#E7513B33] text-[#C41230] text-xs mt-2 px-4 py-[2px] bottom-0 rounded-lg">
                                 Dibatalkan
                               </span>

@@ -273,26 +273,14 @@ function DetailAktivitas() {
                     />
                   </div>
                   <div className="rounded-full mx-auto max-w-[80px] mt-[66px]">
-                    <svg
-                      width="38"
-                      height="80"
-                      viewBox="0 0 38 80"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        opacity="0.9"
-                        d="M18.983 42.0339L37.9661 80H0L18.983 42.0339Z"
-                        fill="black"
-                      />
-                      <path
-                        d="M18.983 37.9661C29.4671 37.9661 37.9661 29.4671 37.9661 18.983C37.9661 8.49899 29.4671 0 18.983 0C8.49899 0 0 8.49899 0 18.983C0 29.4671 8.49899 37.9661 18.983 37.9661Z"
-                        fill="#c41230"
-                      />
-                    </svg>
+                    <img src="/images/Logo.png" alt="logo peduly" />
                   </div>
-                  <p className="font-bold mx-auto text-[24px] mt-[60px] mb-[32px]">
-                    Masuk
+                  <p className="font-bold mx-auto text-[24px] mt-[36px]">Masuk</p>
+                  <p className="mx-auto text-[#717171] text-[14px]">
+                    Belum memiliki akun?{' '}
+                    <Link to="/register" className="text-peduly-primary">
+                      Daftar
+                    </Link>
                   </p>
                   {mode === 'selection' && (
                     <div>
