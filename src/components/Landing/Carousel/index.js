@@ -15,15 +15,9 @@ export default function CarouselMain() {
       </CarouselItem> */}
       <CarouselItem>
         <a href="https://www.peduly.com" target="_blank" rel="noreferrer">
-          <img src="/images/slides/slide-2.png" alt="" className="mx-auto" />
+          <img src="/images/slides/slide-4.png" alt="" className="mx-auto" />
         </a>
       </CarouselItem>
-      <CarouselItem>
-        <a href="https://www.peduly.com" target="_blank" rel="noreferrer">
-          <img src="/images/slides/slide-2.png" alt="" className="mx-auto" />
-        </a>
-      </CarouselItem>
-      
     </Carousel>
   )
 }

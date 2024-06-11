@@ -488,7 +488,7 @@ function Donasi({ setPilihMetodeActive }) {
                 <p className="ml-[30px] text-sm font-normal">Dana</p>
               </div>
               <hr style={{ border: '0.5px solid #E4E4E480' }} />
-              {/* <div
+              <div
                 className="flex flex-row items-center cursor-pointer"
                 onClick={() =>
                   pilihMetode({ metode: 'emoney', nama: 'jenius' })
@@ -534,8 +534,8 @@ function Donasi({ setPilihMetodeActive }) {
                 </div>
                 <p className="ml-[30px] text-sm font-normal">Jenius</p>
               </div>
-              <hr style={{ border: '0.5px solid #E4E4E480' }} /> */}
-              {/* <div
+              <hr style={{ border: '0.5px solid #E4E4E480' }} />
+              <div
                 className="flex flex-row items-center cursor-pointer"
                 onClick={() => pilihMetode({ metode: 'emoney', nama: 'bca' })}
               >
@@ -576,7 +576,7 @@ function Donasi({ setPilihMetodeActive }) {
                   Bank Central Asia
                 </p>
               </div>
-              <hr style={{ border: '0.5px solid #E4E4E480' }} /> */}
+              <hr style={{ border: '0.5px solid #E4E4E480' }} />
               {/* <div
                 className="flex flex-row items-center cursor-pointer"
                 onClick={() => pilihMetode({ metode: 'emoney', nama: 'bni' })}

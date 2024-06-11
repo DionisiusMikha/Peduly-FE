@@ -10,7 +10,7 @@ export default function Greeting() {
           Hai, {user?.user?.name ? user?.user?.name : 'kamu'}
         </h2>
         <p className="text-[14px] font-normal text-[#717171] mt-[6px]">
-          Bersama untuk kebaikan
+          Berbagi Kebaikan
         </p>
       </div>
     </div>

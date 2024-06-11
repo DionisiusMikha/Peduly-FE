@@ -59,7 +59,7 @@ const TabProfile = () => {
                 : 'text-peduly-subtitle'
               }`}
           >
-            Riwayat Aktivitas
+            Riwayat Transaksi
           </li>
           <li
             onClick={() => setActiveIndex(1)}
