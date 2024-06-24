@@ -13,7 +13,7 @@ import { Redirect, useHistory } from 'react-router-dom'
 import BiayaAktivitas from 'components/BuatAktivitas/BiayaAktivitas'
 
 function BuatAktivitas({ location }) {
-  console.log("location", location)
+  //console.log("location", location)
   const [step, setStep] = useState('aktivitas')
 
   const [idAktivitas, setIdAktivitas] = useState(
@@ -52,8 +52,8 @@ function BuatAktivitas({ location }) {
   )
   const [vouchers, setVouchers] = useState(location?.state?.vouchers)
   const [isVouchers, setisVouchers] = useState(!!location?.state?.vouchers?.length > 0)
-  console.log('isVoucher', isVouchers)
-  console.log('vouchers', vouchers)
+  //console.log('isVoucher', isVouchers)
+  //console.log('vouchers', vouchers)
   const [tautanAktivitas, setTautanAktivitas] = useState(
     location.state?.activity?.link_wa ? location.state.activity.link_wa : '',
   )
@@ -73,7 +73,7 @@ function BuatAktivitas({ location }) {
     link_guidebook: bookAktivitas,
   }
 
-  console.log(data);
+  //console.log(data);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const history = useHistory()
@@ -108,9 +108,9 @@ function BuatAktivitas({ location }) {
   dataSend.append('link_guidebook', data.link_guidebook || undefined)
   dataSend.append('biaya', data.biaya.biaya || "")
 
-  console.log("biaya", data.biaya.biaya)
-  console.log("tipe data img", data.judul.image.image instanceof Blob)
-  console.log(data.judul.image.image)
+  //console.log("biaya", data.biaya.biaya)
+  //console.log("tipe data img", data.judul.image.image instanceof Blob)
+  //console.log(data.judul.image.image)
   // SUBMIT BUAT GALANG DANA
   const handleBuatGalangDana = async () => {
     setLoading(true)
@@ -118,7 +118,7 @@ function BuatAktivitas({ location }) {
     dataSend.append('foto_activity', data.judul.image?.image || '')
     dataSend.append('biaya_activity[0][per]', data.biaya.per_orang || 1)
     dataSend.append('biaya_activity[0][price]', data.biaya.biaya || 0)
-    console.log("vouchers", vouchers)
+    //console.log("vouchers", vouchers)
 
     if (isVouchers && vouchers && vouchers.length > 0) {
       vouchers.filter(voucher => (voucher.name && voucher.discount)).forEach((voucher, index) => {
@@ -128,8 +128,8 @@ function BuatAktivitas({ location }) {
         dataSend.append(`vouchers[${index}][minimum_donated]`, voucher.minVolunteer)
       })
     }
-    console.log("dataSend")
-    // console.log(Array.from([...dataSend]))
+    // ////console.log("dataSend")
+    // //console.log(Array.from([...dataSend]))
 
     await axios
       .post(`${API_URL}/api/aktivitas/create`, dataSend, {
@@ -158,6 +158,7 @@ function BuatAktivitas({ location }) {
     dataSend.append('status_publish', 'published')
     dataSend.append(`biaya`, data.biaya.biaya)
     dataSend.append('criterias', JSON.stringify(data.detail.kriteria))
+    dataSend.append('biaya_activity[0][price]', data.biaya.biaya || 0)
     dataSend.append('tasks', JSON.stringify(data.detail.tugas))
     if (isVouchers && vouchers && vouchers.length > 0) {
       vouchers.filter(voucher => (voucher.name && voucher.discount)).forEach((voucher, index) => {
@@ -167,7 +168,7 @@ function BuatAktivitas({ location }) {
         dataSend.append(`vouchers[${index}][minimum_donated]`, voucher.minVolunteer)
       })
     }
-    console.log(data.judul.image.image)
+    //console.log(data.judul.image.image)
     if (data.judul.image.image instanceof Blob) {
       dataSend.append('foto_activity', data.judul.image?.image || '')
     } else {
@@ -176,16 +177,16 @@ function BuatAktivitas({ location }) {
       // const blob = new Blob([imageBuffer], { type: response.headers.get('content-type') });
       // dataSend.append('foto_activity', blob)
     }
-    console.log("vouchers", vouchers)
-    console.log("dataSend")
-    console.log(Array.from([...dataSend]))
+    //console.log("vouchers", vouchers)
+    //console.log("dataSend")
+    //console.log(Array.from([...dataSend]))
     await axios
       .post(`${API_URL}/api/aktivitas/${data.id}/update`, dataSend, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then(() => {
         setBuatAktivitasBerhasil()
-        history.push('/aktivitas-saya/create/berhasil')
+        history.push('/aktivitas-saya/create/berhasilEdit')
       })
       .catch((error) => {
         setBuatAktivitasError()

@@ -37,6 +37,7 @@ import Profile from 'pages/Profile/Profile'
 import NewPengaturan from 'pages/Profile/Pengaturan/NewPengaturan'
 import BuatAktivitas from 'pages/Profile/AktivitasSaya/BuatAktivitas'
 import BuatAktivitasBerhasil from 'components/BuatAktivitas/BuatAktivitasBerhasil'
+import EditAktivitasBerhasil from 'components/BuatAktivitas/EditAktivitasBerhasil'
 import Partisipasi from 'components/Partisipasi'
 import PartisipasiBerhasil from 'components/Partisipasi/PartisipasiBerhasil'
 import AktivitasSaya from 'pages/Profile/AktivitasSaya'
@@ -121,6 +122,11 @@ function App() {
           exact
           path="/aktivitas-saya/create/berhasil"
           component={BuatAktivitasBerhasil}
+        />
+        <Route
+          exact
+          path="/aktivitas-saya/create/berhasilEdit"
+          component={EditAktivitasBerhasil}
         />
         <Route
           exact

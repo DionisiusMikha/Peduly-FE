@@ -271,7 +271,19 @@ export const getBuatAktivitasBerhasil = () => {
     secure: true,
   })
 }
+export const getEditAktivitasBerhasil = () => {
+  return Cookies.get('_bAKTvBSL', {
+    sameSite: 'none',
+    secure: true,
+  })
+}
 
+export const removeEditAktivitasBerhasil = () => {
+  return Cookies.remove('_bAKTvBSL', {
+    sameSite: 'none',
+    secure: true,
+  })
+}
 export const removeBuatAktivitasBerhasil = () => {
   return Cookies.remove('_bAKTvBSL', {
     sameSite: 'none',

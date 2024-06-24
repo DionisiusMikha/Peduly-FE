@@ -277,16 +277,69 @@ const KonfirmasiSelfFunded = () => {
   const countDiscount = () => {
     if (!currentVoucher || currentVoucher.status === "not available") return
 
-    const discount = parseFloat(currentVoucher?.presentase_diskon)
+    const discount = parseInt(currentVoucher?.presentase_diskon)
     if (isNaN(discount)) return
     return splitInDots(dataAktivitas?.data?.activity?.prices[0]?.price * discount / 100)
   }
+  const adminFee = () => {
+    if (!voucher) {
+      let price = parseInt(dataAktivitas?.data?.activity?.prices[0]?.price)
+      let adminFee = 0
+      if (method.nama === "gopay" && method.metode === "emoney" || method.nama === "shopeepay" && method.metode === "emoney") {
+        adminFee = price * 2 / 100
+      }
+      else if (method.metode === "emoney") {
+        adminFee = price * 0.7 / 100
+      }
+      else if (method.metode === "bank_transfer") {
+        adminFee = 4000
+      }
+      return splitInDots(adminFee.toFixed(2))
+    } else {
+      let price = parseInt(dataAktivitas?.data?.activity?.prices[0]?.price)
+      const discount = parseInt(currentVoucher?.presentase_diskon)
+      const finalPrice = price - (price * discount / 100)
+      let adminFee = 0
+      if (method.nama === "gopay" && method.metode === "emoney" || method.nama === "shopeepay" && method.metode === "emoney") {
+        adminFee = finalPrice * 0.02
+      } else if (method.metode === "emoney") {
+        adminFee = finalPrice * 0.7 / 100
+      } else if (method.metode === "bank_transfer") {
+        adminFee = 4000
+      }
+      return splitInDots(adminFee.toFixed(2))
+    }
+  }
+
   const countPrice = () => {
-    let price = dataAktivitas?.data?.activity?.prices[0]?.price
-    if (!voucher) return splitInDots(price)
-    const discount = parseFloat(currentVoucher?.presentase_diskon)
+    let price = parseInt(dataAktivitas?.data?.activity?.prices[0]?.price)
+    if (!voucher) {
+      let adminFee = 0
+      if (method.nama === "gopay" && method.metode ==="emoney" || method.nama === "shopeepay" && method.metode ==="emoney") {
+        adminFee = price * 2 / 100
+      }
+      else if (method.metode === "emoney") {
+        adminFee = price * 0.7 / 100
+      }
+      else if (method.metode === "bank_transfer") {
+        adminFee = 4000
+      }
+      const totalPrice = price + adminFee
+      return splitInDots(totalPrice)
+    } else {
+    const discount = parseInt(currentVoucher?.presentase_diskon)
     const finalPrice = price - (price * discount / 100)
-    return splitInDots(finalPrice)
+    let adminFee = 0
+    if (method.nama === "gopay" && method.metode ==="emoney" || method.nama === "shopeepay" && method.metode ==="emoney") {
+      adminFee = finalPrice * 0.02
+    } else if (method.metode === "emoney") {
+      adminFee = finalPrice * 0.7 / 100
+    } else if (method.metode === "bank_transfer") {
+      adminFee = 4000
+    }
+    const totalPrice = finalPrice + adminFee
+    return splitInDots(totalPrice)
+  }
   }
   const switchRendering = () => {
 
@@ -388,15 +441,19 @@ const KonfirmasiSelfFunded = () => {
               <p>Biaya</p>
               <p>Rp. {splitInDots(dataAktivitas?.data?.activity?.prices[0]?.price)}</p>
             </div>
+            <div className='flex justify-between text-sm text-peduly-subtitle mt-5'>
+              <p>Biaya Admin</p>
+              <p>Rp. {adminFee()}</p>
+            </div>
             {voucher && (<>
               <div className='flex justify-between text-sm text-peduly-subtitle mt-3'>
-                <p>Potongan Harga</p>
-                <p>Rp. {countDiscount()}</p>
+                <p>Potongan Biaya</p>
+                <p>-Rp. {countDiscount()}</p>
               </div>
             </>)}
             <hr className='border-dashed mt-5 ' />
             <div className='mt-5 flex justify-between text-peduly-primary font-semibold'>
-              <p>Total Biaya </p>
+              <p>Total Pembayaran</p>
               <p>Rp. {countPrice()}</p>
             </div>
           </div>
