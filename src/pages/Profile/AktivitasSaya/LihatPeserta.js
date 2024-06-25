@@ -19,8 +19,6 @@ const LihatPeserta = ({ location }) => {
   const user = useContext(UserContext)
   const history = useHistory()
 
-
-
   useEffect(() => {
     getData()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
