@@ -7,7 +7,7 @@ import { UserContext } from 'context/UserContext'
 import Spinner from 'components/Spinner'
 // import splitInDots from 'utils/splitDots'
 
-const TABLE_HEAD = ["Nama", "Nominal", "Kontak", "ID Transaksi", "Tanggal", "Status"];
+const TABLE_HEAD = ["Nama", "Nominal", "Kontak", "ID Transaksi", "Tanggal", "Status", "Metode", "Pembayaran"];
 
 const LihatPeserta = ({ location }) => {
   const [transactionData, setTransactionData] = useState([]);
@@ -26,7 +26,7 @@ const LihatPeserta = ({ location }) => {
     setLoading(true);
     const token = getToken();
     try {
-      const response = await axios.get(`${API_URL}/api/aktivitas/peserta/${slug}`, {
+      const response = await axios.get(`${API_URL}/api/aktivitas/pesertaTanpaAdmin/${slug}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -229,7 +229,8 @@ const LihatPeserta = ({ location }) => {
                         </span>
                       )}
                     </td>
-                    {/* <hr style={{ border: '0.5px solid #E4E4E480' }} /> */}
+                    <td className="px-6 py-4 text-gray-900 whitespace-nowra">{item.metode_pembayaran}</td>
+                    <td className="px-6 py-4 text-gray-900 whitespace-nowra uppercase">{item.emoney_name || item.bank_name}</td>
                   </tr>
                 ))}
               </tbody>
